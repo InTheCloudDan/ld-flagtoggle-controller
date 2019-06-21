@@ -1,0 +1,11 @@
+apiVersion: featureflags.launchdarkly.com/v1
+kind: FlagToggle
+metadata:
+  name: flagtoggle-sample
+spec:
+  # Add fields here
+  flagkey: example_fbbrrrfkazmmecsadafewqttt
+  enabled: true
+  projectkey: default
+  environmentkey: production
+  comment: "We need this running now!!!!!!!!!"

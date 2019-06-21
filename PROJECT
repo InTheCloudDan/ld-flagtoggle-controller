@@ -1,0 +1,7 @@
+version: "2"
+domain: launchdarkly.com
+repo: _/Users/danielobrien/Projects/launchdarkly/ld-flagtoggle-controller
+resources:
+- group: featureflags
+  version: v1
+  kind: FlagToggle
