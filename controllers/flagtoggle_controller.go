@@ -53,6 +53,7 @@ func (r *FlagToggleReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) 
 	})
 
 	for _, env := range flag.Spec.EnvironmentKey {
+		fmt.Println(env)
 		flagPath := "/environments/" + env + "/on"
 
 		var state interface{} = flag.Spec.Enabled
@@ -65,14 +66,20 @@ func (r *FlagToggleReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) 
 			Comment: flag.Spec.Comment,
 			Patch:   []ldapi.PatchOperation{patchArr},
 		}
-		ldflag, resp, err := client.FeatureFlagsApi.PatchFeatureFlag(ldctx, flag.Spec.ProjectKey, flag.Spec.FlagKey, patch)
-		if resp != nil {
-			fmt.Println(resp.Body)
+		_, resp, err := client.FeatureFlagsApi.PatchFeatureFlag(ldctx, flag.Spec.ProjectKey, flag.Spec.FlagKey, patch)
+		if resp.Status != "200" {
+			flag.Status.Message = resp.Status
+			err = r.Status().Update(kctx, &flag)
+			if err != nil {
+				return ctrl.Result{}, err
+			}
+			continue
 		}
 		if err != nil {
-			fmt.Println(err)
+			flag.Status.Message = err.Error()
 		}
-		fmt.Println(ldflag)
+		// fmt.Println(ldflag)
+		flag.Status.Message = "flag configured"
 	}
 	return ctrl.Result{}, nil
 }

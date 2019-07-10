@@ -42,11 +42,13 @@ type FlagToggleSpec struct {
 type FlagToggleStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	Message string `json:"message"`
 }
 
 // +kubebuilder:object:root=true
 
 // FlagToggle is the Schema for the flagtoggles API
+// +kubebuilder:subresource:status
 type FlagToggle struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

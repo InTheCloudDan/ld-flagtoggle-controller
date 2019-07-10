@@ -11,6 +11,8 @@ spec:
     kind: FlagToggle
     plural: flagtoggles
   scope: ""
+  subresources:
+    status: {}
   validation:
     openAPIV3Schema:
       description: FlagToggle is the Schema for the flagtoggles API
@@ -412,6 +414,14 @@ spec:
           - comment
           type: object
         status:
+          properties:
+            message:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              type: string
+          required:
+          - message
           type: object
       type: object
   versions:
