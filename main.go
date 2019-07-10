@@ -53,6 +53,10 @@ func main() {
 
 	ctrl.SetLogger(zap.Logger(true))
 
+	if APIKey == "" {
+		panic("API Key is required!")
+	}
+	
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
 		Scheme:             scheme,
 		MetricsBindAddress: metricsAddr,
