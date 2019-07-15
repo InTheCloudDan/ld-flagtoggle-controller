@@ -2,9 +2,9 @@
 
 This is a reference implementation for a kubernetes controller to toggle LaunchDarkly flags via the API.
 
-##Requirements
+## Requirements
 
-Go 1.12+ installed
+Go 1.12+ installed   
 [Kubebuilder v2.0.0-alpha.4](https://github.com/kubernetes-sigs/kubebuilder/releases/tag/v2.0.0-alpha.4) - The binaries that are part of the release must be under `/usr/local/kubebuilder/bin`.
 
 ## Setup
